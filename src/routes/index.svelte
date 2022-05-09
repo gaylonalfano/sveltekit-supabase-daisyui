@@ -1,2 +1,9 @@
-<h1 class="text-3xl font-bold underline">Hello world!</h1>
-<button class="btn">Button</button>
+<script>
+	import TodoForm from '$lib/components/TodoForm.svelte';
+</script>
+
+<main class="prose">
+	<h1>My Todos</h1>
+
+	<TodoForm />
+</main>
