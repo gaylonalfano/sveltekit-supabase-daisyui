@@ -15,12 +15,5 @@
 	<label class="label" for={id}>
 		<span class="label-text">{label}</span>
 	</label>
-	<input
-		{type}
-		{placeholder}
-		{id}
-		{value}
-		on:input={onInput}
-		class="input input-bordered w-full max-w-xs"
-	/>
+	<input {type} {placeholder} {id} {value} on:input={onInput} class="input input-bordered w-full" />
 </div>
