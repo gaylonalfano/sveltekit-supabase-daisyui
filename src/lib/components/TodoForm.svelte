@@ -1,12 +1,16 @@
 <script>
 	import Input from '$lib/components/Input.svelte';
-	import { addTodo } from '$lib/stores/TodosStore';
+	import { TodosStore } from '$lib/stores/TodosStore';
 
 	let todo = '';
 
 	function handleSubmit() {
 		console.log('Submitted!');
-		addTodo(todo);
+		// NOTE There are several ways to build your Stores.
+		// Below is me just experimenting with some variations.
+		// addTodo(todo);
+		//customTodosStore.addTodo(todo);
+		TodosStore.addTodo(todo);
 		todo = '';
 	}
 </script>
