@@ -3,7 +3,7 @@
 	import TodoItem from '$lib/components/TodoItem.svelte';
 	import { TodosStore } from '$lib/stores/TodosStore';
 
-	// TODO Work on adding a TodoItem component
+	TodosStore.loadTodos();
 </script>
 
 <main class="prose">

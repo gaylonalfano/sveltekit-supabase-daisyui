@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import { db } from '$lib/supabase/db';
 
 // export const todos = writable<Record<string, any>[]>([]);
 
@@ -46,22 +47,50 @@ function toggleCompleted(id: Date) {
 	// });
 }
 
+// async function loadTodos() {
+// 	const { data, error } = await db.from('todos').select();
+
+// 	if (error) {
+// 		return console.error(error);
+// 	}
+
+// 	set(data);
+// }
+
 function createTodosStore() {
 	const { subscribe, set, update } = writable<Record<string, any>[]>([]);
 
 	return {
 		subscribe,
-		addTodo: (text: string) => {
+		addTodo: async (text: string) => {
+			const { data, error } = await db.from('todos').insert([{ text, isCompleted: false }]);
+
+			if (error) {
+				return console.error(error);
+			}
+
 			update((items: Record<string, any>[]) => {
-				return [...items, { text, isCompleted: false, id: Date.now() }];
+				return [...items, data[0]];
 			});
 		},
-		deleteTodo: (id: Date) => {
+		deleteTodo: async (id: Date) => {
+			const { error } = await db.from('todos').delete().match({ id });
+
+			if (error) {
+				return console.error(error);
+			}
+
 			update((items: Record<string, any>[]) => {
 				return items.filter((item) => item.id !== id);
 			});
 		},
-		toggleCompleted: (id: Date) => {
+		toggleCompleted: async (id: Date, currentState: boolean) => {
+			const { error } = await db.from('todos').update({ isCompleted: !currentState }).match({ id });
+
+			if (error) {
+				return console.error(error);
+			}
+
 			update((items: Record<string, any>[]) => {
 				// Find the index of the item
 				let index = -1;
@@ -79,6 +108,15 @@ function createTodosStore() {
 
 				return items;
 			});
+		},
+		loadTodos: async () => {
+			const { data, error } = await db.from('todos').select();
+
+			if (error) {
+				return console.error(error);
+			}
+
+			set(data);
 		},
 		reset: () => set([])
 	};

@@ -17,7 +17,7 @@
 				type="checkbox"
 				checked={todo.isCompleted}
 				class="checkbox"
-				on:change={() => TodosStore.toggleCompleted(todo.id)}
+				on:change={() => TodosStore.toggleCompleted(todo.id, todo.isCompleted)}
 			/>
 			<span class="label-text basis-3/4" class:line-through={todo.isCompleted}>{todo.text}</span>
 			<button class="btn btn-error btn-xs" on:click={() => TodosStore.deleteTodo(todo.id)}
