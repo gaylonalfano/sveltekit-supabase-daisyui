@@ -2,10 +2,10 @@ import { writable } from 'svelte/store';
 
 // export const todos = writable<Record<string, any>[]>([]);
 
-function addTodo(task: string) {
+function addTodo(text: string) {
 	console.log('Adding todo...');
 	TodosStore.update((items: Record<string, any>[]) => {
-		return [...items, { task, isCompleted: false, id: Date.now() }];
+		return [...items, { text, isCompleted: false, id: Date.now() }];
 	});
 }
 
@@ -51,9 +51,9 @@ function createTodosStore() {
 
 	return {
 		subscribe,
-		addTodo: (task: string) => {
+		addTodo: (text: string) => {
 			update((items: Record<string, any>[]) => {
-				return [...items, { task, isCompleted: false, id: Date.now() }];
+				return [...items, { text, isCompleted: false, id: Date.now() }];
 			});
 		},
 		deleteTodo: (id: Date) => {
