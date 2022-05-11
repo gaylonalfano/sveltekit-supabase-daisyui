@@ -17,7 +17,19 @@
 
 <div class="container mx-auto">
 	<form on:submit|preventDefault={handleSubmit} class="card card-body mx-auto max-w-lg">
-		<Input label="Whatcha doing?" id="todo" bind:value={todo} type="text" />
+		<div class="form-control w-full">
+			<label class="label" for="todo">
+				<span class="label-text">What needs doing?</span>
+			</label>
+			<input
+				type="text"
+				placeholder="Enter todo..."
+				name="todo"
+				id="todo"
+				class="input input-bordered w-full"
+				bind:value={todo}
+			/>
+		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 </div>

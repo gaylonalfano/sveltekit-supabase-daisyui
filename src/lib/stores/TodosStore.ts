@@ -74,7 +74,7 @@ function createTodosStore() {
 
 				if (index !== -1) {
 					// Item is found
-					items[index].isCompleted != items[index].isCompleted;
+					items[index].isCompleted = !items[index].isCompleted;
 				}
 
 				return items;
