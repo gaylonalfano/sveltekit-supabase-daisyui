@@ -1,5 +1,10 @@
 <script>
 	import { db } from '$lib/supabase/db';
+	import { UserStore } from '$lib/stores/AuthStore';
+
+	async function login() {
+		console.log('login');
+	}
 
 	async function logout() {
 		db.auth.signOut();

@@ -39,6 +39,7 @@
 	}
 </script>
 
+<h1 class="text-center">Log In</h1>
 <p class="text-center">Sign in via magic link with your email below.</p>
 
 <div class="container mx-auto">

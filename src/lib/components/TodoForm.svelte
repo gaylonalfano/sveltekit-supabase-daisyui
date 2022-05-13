@@ -1,6 +1,7 @@
 <script>
 	import Input from '$lib/components/Input.svelte';
 	import { TodosStore } from '$lib/stores/TodosStore';
+	import { UserStore } from '$lib/stores/AuthStore';
 
 	let text = '';
 
@@ -10,7 +11,7 @@
 		// Below is me just experimenting with some variations.
 		// addTodo(text);
 		//customTodosStore.addTodo(text);
-		TodosStore.addTodo(text);
+		TodosStore.addTodo(text, $UserStore.id);
 		text = '';
 	}
 </script>

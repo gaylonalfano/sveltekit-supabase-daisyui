@@ -62,8 +62,10 @@ function createTodosStore() {
 
 	return {
 		subscribe,
-		addTodo: async (text: string) => {
-			const { data, error } = await db.from('todos').insert([{ text, isCompleted: false }]);
+		addTodo: async (text: string, user_id: string) => {
+			const { data, error } = await db
+				.from('todos')
+				.insert([{ text, isCompleted: false, user_id }]);
 
 			if (error) {
 				return console.error(error);
